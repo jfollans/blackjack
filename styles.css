@@ -1,0 +1,16 @@
+.game
+{
+	display:grid;
+	grid-template-columns: auto auto;
+}
+.buttons
+{
+	background-color: blueviolet;
+	padding:5px;
+}
+.dealer
+{
+	background-color: darkslateblue;
+	color:white;
+	text-align: center;
+}
