@@ -173,6 +173,8 @@ function compareHands()
 	{
 		// player win
 		result_text.innerHTML = "Player win! "
+		disableButtons();
+		return;
 	}
 	else if(pSum < dSum)
 	{
