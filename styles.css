@@ -25,6 +25,23 @@
 	max-width: 50%;
 }
 
+.card-window
+{
+	display:grid;
+	grid-template-columns: auto auto;
+	padding:10px;
+}
+
+.card-disp
+{
+	border: thin solid black;
+	border-radius: 16px;
+	display: grid;
+	align-items: center;
+	justify-items: center;
+	padding:10px;
+}
+
 .info
 {
 	background-color: rgb(50, 88, 119);

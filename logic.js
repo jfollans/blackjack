@@ -88,27 +88,16 @@ function initialDeal()
 
 function updateDisplay()
 {
-	var pHandDisplay = document.getElementById('player-cards');
-	var dHandDisplay = document.getElementById('dealer-cards');
+	var pC0 = document.getElementById('p-card-0');
+	var pC1 = document.getElementById('p-card-1');
 
-	var pHandString = "";
-	var dHandString = "";
+	var dC0 = document.getElementById('d-card-0');
+	var dC1 = document.getElementById('d-card-1');
 
-	var i = 0;
-	for( i = 0 ; i < playerHand.length ; i++ )
-	{
-		pHandString = pHandString + cardString(playerHand[i]);
-		
-
-	}
-	for( i = 0 ; i < dealerHand.length ; i++ )
-	{
-		dHandString = dHandString + cardString(dealerHand[i]);
-	}
-
-	pHandDisplay.innerHTML = pHandString.slice(0, -2);
-	dHandDisplay.innerHTML = dHandString.slice(0, -2);
-
+	pC0.innerHTML = cardString(playerHand[0]);
+	pC1.innerHTML = cardString(playerHand[1]);
+	dC0.innerHTML = cardString(dealerHand[0]);
+	dC1.innerHTML = cardString(dealerHand[1]);
 }
 
 function cardString(card)
@@ -134,7 +123,7 @@ function cardString(card)
 	{
 		retstring = card.value;
 	}
-	retstring = retstring + " of " + card.suit + ", ";
+	retstring = retstring + " of " + card.suit + "";
 	return retstring;
 }
 
@@ -194,13 +183,4 @@ function computeSum(hand)
 		sum += temp;			// add the card value to the sum
 	}
 	return sum;					// return the sum of the cards in the hand
-}
-
-
-
-
-
-function reverseString(str)
-{
-	return str.split("").reverse().join("");
 }
