@@ -5,7 +5,10 @@ var deck = [];
 
 function resetDeck()
 {
+	deck = [];
 	tempDeck = [];
+	playerHand = [];
+	dealerHand = [];
 	// create the cards
 	var i = 0;
 	var j = 0;
@@ -77,9 +80,64 @@ function initialDeal()
 	playerHand.push(deck.pop());
 	dealerHand.push(deck.pop());
 
+	updateDisplay();
+
 	compareHands();
 
 }
+
+function updateDisplay()
+{
+	var pHandDisplay = document.getElementById('player-cards');
+	var dHandDisplay = document.getElementById('dealer-cards');
+
+	var pHandString = "";
+	var dHandString = "";
+
+	var i = 0;
+	for( i = 0 ; i < playerHand.length ; i++ )
+	{
+		pHandString = pHandString + cardString(playerHand[i]);
+		
+
+	}
+	for( i = 0 ; i < dealerHand.length ; i++ )
+	{
+		dHandString = dHandString + cardString(dealerHand[i]);
+	}
+
+	pHandDisplay.innerHTML = pHandString.slice(0, -2);
+	dHandDisplay.innerHTML = dHandString.slice(0, -2);
+
+}
+
+function cardString(card)
+{
+	var retstring = "";
+	if(card.value == 1)
+	{
+		retstring = "A";
+	}
+	if(card.value == 11)
+	{
+		retstring = "J";
+	}
+	if(card.value == 12)
+	{
+		retstring = "Q";
+	}
+	if(card.value == 13)
+	{
+		retstring = "K";
+	}
+	if(card.value > 1 && card.value < 11)
+	{
+		retstring = card.value;
+	}
+	retstring = retstring + " of " + card.suit + ", ";
+	return retstring;
+}
+
 
 function compareHands()
 {
@@ -137,21 +195,6 @@ function computeSum(hand)
 	}
 	return sum;					// return the sum of the cards in the hand
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
