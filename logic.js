@@ -1,7 +1,25 @@
+
+// ==================
+//
+//	The rules of blackjack:
+//	1. You and dealer get dealt two cards each
+//	2. You can hit until you bust or stand
+//	3. If the dealer busts you win
+//	4. ???
+//	5. Profit
+//
+//	For now, just deal two cards and compare the value.
+// ==================
+
+
 var suits = ['hearts', 'diamonds', 'spades', 'clubs'];
 var values = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
 var deck = [];
+
+var playerHand = [];
+var dealerHand = [];
+
 
 function resetDeck()
 {
@@ -33,26 +51,6 @@ function resetDeck()
 	}
 	console.log(deck);
 }
-
-
-
-
-
-// ==================
-//
-//	The rules of blackjack:
-//	1. You and dealer get dealt two cards each
-//	2. You can hit until you bust or stand
-//	3. If the dealer busts you win
-//	4. ???
-//	5. Profit
-//
-//	For now, just deal two cards and compare the value.
-// ==================
-
-
-var playerHand = [];
-var dealerHand = [];
 
 function hit()
 {
