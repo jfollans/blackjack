@@ -52,8 +52,17 @@ function resetDeck()
 	console.log(deck);
 }
 
-function hit()
+function hitPlayer()
 {
+	playerHand.push(deck.pop());	// add card to player's deck
+
+	newCard = document.createElement('div');	// add new card to table
+	newCard.classList = 'card-disp';
+	newCard.innerHTML = cardString(playerHand[playerHand.length-1]);
+	document.getElementById('player-cards').appendChild(newCard);
+
+	compareHands();					// check scores for bust, win, etc
+
 	console.log('hit');
 }
 
@@ -65,6 +74,12 @@ function stand()
 function startGame()
 {
 	console.log('started game');
+	enableButtons();
+
+	// remove all dealt cards from table
+	document.getElementById('player-cards').innerHTML = '';
+	document.getElementById('dealer-cards').innerHTML = '';
+
 	resetDeck();
 	initialDeal();
 }
@@ -86,16 +101,23 @@ function initialDeal()
 
 function updateDisplay()
 {
-	var pC0 = document.getElementById('p-card-0');
-	var pC1 = document.getElementById('p-card-1');
 
-	var dC0 = document.getElementById('d-card-0');
-	var dC1 = document.getElementById('d-card-1');
+	var i = 0;
+	for( i = 0 ; i < playerHand.length ; i++)
+	{
+		newCard = document.createElement('div');
+		newCard.classList = 'card-disp';
+		newCard.innerHTML = cardString(playerHand[i]);
+		document.getElementById('player-cards').appendChild(newCard);
+	}
 
-	pC0.innerHTML = cardString(playerHand[0]);
-	pC1.innerHTML = cardString(playerHand[1]);
-	dC0.innerHTML = cardString(dealerHand[0]);
-	dC1.innerHTML = cardString(dealerHand[1]);
+	for( i = 0 ; i < dealerHand.length ; i++)
+	{
+		newCard = document.createElement('div');
+		newCard.classList = 'card-disp';
+		newCard.innerHTML = cardString(dealerHand[i]);
+		document.getElementById('dealer-cards').appendChild(newCard);
+	}
 }
 
 function cardString(card)
@@ -136,12 +158,14 @@ function compareHands()
 	{
 		// player bust
 		result_text.innerHTML = "Player bust. "
+		disableButtons();
 		return;
 	}
 	if(dSum > 21)
 	{
 		// dealer bust
 		result_text.innerHTML = result_text.innerHTML + "Dealer bust."
+		disableButtons();
 		return;
 	}
 
@@ -181,4 +205,17 @@ function computeSum(hand)
 		sum += temp;			// add the card value to the sum
 	}
 	return sum;					// return the sum of the cards in the hand
+}
+
+
+
+function disableButtons()
+{
+	document.getElementById('hit-button').disabled = true;
+	document.getElementById('stand-button').disabled = true;
+}
+function enableButtons()
+{
+	document.getElementById('hit-button').disabled = false;
+	document.getElementById('stand-button').disabled = false;
 }
