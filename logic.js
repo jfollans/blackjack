@@ -3,13 +3,12 @@ var values = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
 var deck = [];
 
-var i;
-var j;
-
 function resetDeck()
 {
 	tempDeck = [];
 	// create the cards
+	var i = 0;
+	var j = 0;
 	for( i=0; i<suits.length; i++ )
 	{
 		for( j=0; j<values.length; j++ )
@@ -45,6 +44,7 @@ function resetDeck()
 //	4. ???
 //	5. Profit
 //
+//	For now, just deal two cards and compare the value.
 // ==================
 
 
@@ -76,4 +76,78 @@ function initialDeal()
 	dealerHand.push(deck.pop());
 	playerHand.push(deck.pop());
 	dealerHand.push(deck.pop());
+
+	compareHands();
+
+}
+
+function compareHands()
+{
+	var pSum = computeSum(playerHand);
+	var dSum = computeSum(dealerHand);
+
+	if(pSum > dSum)
+	{
+		// player win
+	}
+	else if(pSum < dSum)
+	{
+		// dealer win
+	}
+	else
+	{
+		// tie!
+	}
+}
+
+function computeSum(hand)
+{
+	var i = 0;
+	var sum = 0;
+	var temp = 0;
+	for( i=0 ; i < hand.length ; i++ )
+	{
+		temp = hand[i].value;	// get the card value
+		if(temp >= 11)
+		{
+			temp = 10;			// if we have a face card, make the value 10
+		}
+		if(temp == 1)
+		{
+			temp = 11;			// if we have an ace, make the value 11
+		}
+		sum += temp;			// add the card value to the sum
+	}
+	return sum;					// return the sum of the cards in the hand
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function reverseString(str)
+{
+	var splitstr = str.split("")
+	var retstr = "";
+
+	for(i = splitstr.length - 1 ; i > -1 ; i--)
+	{
+		retstr = retstr + splitstr[i];
+	}
+	return retstr;
 }
