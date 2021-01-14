@@ -85,18 +85,35 @@ function compareHands()
 {
 	var pSum = computeSum(playerHand);
 	var dSum = computeSum(dealerHand);
+	var result_text = document.getElementById('results');
+
+	if(pSum > 21)
+	{
+		// player bust
+		result_text.innerHTML = "Player bust. "
+		return;
+	}
+	if(dSum > 21)
+	{
+		// dealer bust
+		result_text.innerHTML = result_text.innerHTML + "Dealer bust."
+		return;
+	}
 
 	if(pSum > dSum)
 	{
 		// player win
+		result_text.innerHTML = "Player win! "
 	}
 	else if(pSum < dSum)
 	{
 		// dealer win
+		result_text.innerHTML = "Dealer win! "
 	}
 	else
 	{
 		// tie!
+		result_text.innerHTML = "Tie! "
 	}
 }
 
@@ -142,12 +159,5 @@ function computeSum(hand)
 
 function reverseString(str)
 {
-	var splitstr = str.split("")
-	var retstr = "";
-
-	for(i = splitstr.length - 1 ; i > -1 ; i--)
-	{
-		retstr = retstr + splitstr[i];
-	}
-	return retstr;
+	return str.split("").reverse().join("");
 }

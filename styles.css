@@ -17,9 +17,13 @@
 .cards
 {
 	display:grid;
-	grid-template-columns: auto auto;
+	grid-template-columns: auto auto auto;
 	background-color: darkcyan;
 	color:white;
 	text-align: center;
 	max-width: 50%;
+}
+.results
+{
+	color:white;
 }
